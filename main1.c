@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
-#include "libft.h"
+#include "../libft/libft.h"
 
 void put_honest(char *str, int len)
 {
