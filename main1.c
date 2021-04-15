@@ -150,19 +150,21 @@ int main(void)
 
 	//strncmp
 	printf("strncmp----------------------------------------\n");
-	printf("strncmp:%d:%d:%d\n", strncmp("akiyama", "akiYama", 6), strncmp("akiyama", "aki", 20), strncmp("akiyama", "akiyama", 20));
+	printf("strncmp:%d:%d:%d:%d\n", strncmp("akiyama", "akiYama", 6), strncmp("aki", "akiyama", 20), strncmp("akiyama", "akiyama", 20), strncmp("akiYama", "akiyama", 20));
 	
-	printf("ft_strncmp:%d:%d:%d\n", ft_strncmp("akiyama", "akiYama", 6), ft_strncmp("akiyama", "aki", 20), ft_strncmp("akiyama", "akiyama", 20));
+	printf("ft_strncmp:%d:%d:%d:%d\n", ft_strncmp("akiyama", "akiYama", 6), ft_strncmp("aki", "akiyama", 20), ft_strncmp("akiyama", "akiyama", 20), strncmp("akiYama", "akiyama", 20));
 
 	//atoi
 	printf("atoi----------------------------------------------\n");
 	printf("atoi:%d:%d:%d\n", atoi("+004324"), atoi("-43"), atoi("6543.vkd"));
 	printf("atoi:%d:%d:%d\n", atoi("+-4324"), atoi(" \n 43"), atoi("v54kd"));
-	printf("atoi:%d:%d:%d\n", atoi("-9223372036854775808"), atoi("9223372036854775808"), atoi("abc"));
+	printf("atoi:(x<llong)%d:(llong<x)%d:(abc)%d\n", atoi("-9223372036854775808"), atoi("9223372036854775808"), atoi("abc"));
+	printf("atoi:(long<x<int)%d:(int<x<long)%d:\n", atoi("-9223372036854775800"), atoi("9223372036854775800"));
 
 	printf("ft_atoi:%d:%d:%d\n", ft_atoi("+004324"), ft_atoi("-43"), ft_atoi("6543.vkd"));
 	printf("ft_atoi:%d:%d:%d\n", ft_atoi("+-4324"), ft_atoi(" \n 43"), ft_atoi("v54kd"));
-	printf("ft_atoi:%d:%d:%d\n", ft_atoi("-9223372036854775808"), ft_atoi("9223372036854775808"), ft_atoi("abc"));
+	printf("ft_atoi:(x<llong)%d:(llong<x)%d:(abc)%d\n", ft_atoi("-9223372036854775808"), ft_atoi("9223372036854775808"), ft_atoi("abc"));
+	printf("ft_atoi:(long<x<int)%d:(int<x<long)%d:\n", ft_atoi("-9223372036854775800"), ft_atoi("9223372036854775800"));
 
 	//isalpha
 	printf("isalpha----------------------------------------\n");
@@ -201,7 +203,7 @@ int main(void)
 	printf("tolower:%c:%c:%c:%c\n", tolower('~'), tolower('A'), tolower('h'), tolower('Z'));
 	printf("ft_tolower:%c:%c:%c:%c\n", ft_tolower('~'), ft_tolower('A'), ft_tolower('h'), ft_tolower('Z'));
 
-	//calloc/errono?
+	//calloc/not consider about 0 argument/->NULL or 1/ 0 argument -> 1
 	printf("calloc----------------------------------------\n");
 	int *ans1;
 	int i = -1;
@@ -211,6 +213,14 @@ int main(void)
 		printf(":%d", ans1[i]);
 	printf("\n");
 	free(ans1);
+
+	int *ans1_1;
+	i = -1;
+	ans1_1 = (int *)calloc(0, 0);
+	printf("calloc(0)");
+	printf(":%p", ans1_1);
+	printf("\n");
+	free(ans1_1);
 /*
 	int *ans1_2;
 	i = -1;
