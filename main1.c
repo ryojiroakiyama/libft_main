@@ -13,14 +13,25 @@ void put_honest(char *str, int len)
 
 int main(void)
 {
-	//memset/not consider about oversize n
+	//memset
+	//oversize n || n == 0 || b + sizeof(b) or more -> compile error
+	//b = NULL -> segf
+	//not understand behavoir when int argument, but man saying b is string and mypro's behavoir matches original
 	printf("memset-------------------------------------\n");
+//	int	nb[] = {11, 222, 3333};
+//	memset(nb, 4, 3);
+//	printf("%d:%d:%d\n", nb[0], nb[1], nb[2]);
 	char s1_1[] = "akiyama";
 	printf("memset:%s:%s\n", memset(s1_1 + 2, '@', 3), s1_1);
+
+//	int	nb1[] = {11, 222, 3333};
+//	ft_memset(nb1, 4, 3);
+//	printf("%d:%d:%d\n", nb1[0], nb1[1], nb1[2]);
 	char s1_2[] = "akiyama";
 	printf("ft_memset:%s:%s\n", ft_memset(s1_2 + 2, '@', 3), s1_2);
 	
-	//bzero/not consider about oversize n
+	//bzero
+	//same memset
 	printf("bzero-------------------------------------\n");
 	char s2_1[] = "akiyama";
 	bzero(s2_1 + 2, 3);
@@ -32,68 +43,93 @@ int main(void)
 	printf("ft_bzero:");
 	put_honest(s2_2, 7);
 
-	//memcpy/restrct?/not consider about oversize n
+	//memcpy
+	//oversize n -> compile error
+	//(dst == NULL && src != NULL) || (dst != NULL && src == NULL) -> segf
+	//dst == NULL && src == NULL -> NULL
+	//for some reason buss error or trace buck when first arguments is direct strings not adress
 	printf("memcpy-------------------------------------\n");
 	char s3_1[] = "akiyama";
 	char s3_2[] = "akiyama";
-	printf("memcpy:%s:%s:", memcpy(s3_1, "12345", 4), memcpy(0, 0, 4));
+	char str1[] = "akiyama";
+	printf("memcpy:%s:%s:%s:", memcpy(s3_1, "12345", 4), memcpy(0, 0, 4), memcpy(str1, "12345", 0));
 	memcpy(s3_2, "ab\0de", 4);
 	put_honest(s3_2, 7);
 	
 	char s3_3[] = "akiyama";
 	char s3_4[] = "akiyama";
-	printf("ft_memcpy:%s:%s:", ft_memcpy(s3_3, "12345", 4), ft_memcpy(0, 0, 4));
+	char str2[] = "akiyama";
+	printf("ft_memcpy:%s:%s:%s:", ft_memcpy(s3_3, "12345", 4), ft_memcpy(0, 0, 4), ft_memcpy(str2, "12345", 0));
 	ft_memcpy(s3_4, "ab\0de", 4);
 	put_honest(s3_4, 7);
 
-	//memccpy/not consider about oversize n
+	//memccpy
+	//dst == NULL || src == NULL -> segf
+	//oversize n -> compile error
 	printf("memccpy-------------------------------------\n");
 	char s4_1[] = "akiyama";
 	char s4_2[] = "akiyama";
-	printf("memccpy:%s:%s:%s\n", memccpy(s4_1, "12345", '2', 4), s4_1, memccpy(s4_2, "12345", '5', 4));
+	char str3[] = "akiyama";
+	printf("memccpy:%s:%s:%s:%s\n", memccpy(s4_1, "12345", '2', 4), s4_1, memccpy(s4_2, "12345", '5', 4), s4_2);
+	printf("memccpy:%s:%s\n", memccpy(str3, "12345", '2', 0), str3);
 	
 	char s4_3[] = "akiyama";
 	char s4_4[] = "akiyama";
-	printf("ft_memccpy:%s:%s:%s\n", ft_memccpy(s4_3, "12345", '2', 4), s4_3, ft_memccpy(s4_4, "12345", '5', 4));
+	char str4[] = "akiyama";
+	printf("ft_memccpy:%s:%s:%s:%s\n", ft_memccpy(s4_3, "12345", '2', 4), s4_3, ft_memccpy(s4_4, "12345", '5', 4), s4_2);
+	printf("ft_memccpy:%s:%s\n", ft_memccpy(str4, "12345", '2', 0), str4);
 	
-	//memmove/can't pass norm/not consider about oversize n
+	//memmove
+	//(dst == NULL && src != NULL) || (dst != NULL && src == NULL) -> segf
+	//dst == NULL && src == NULL -> NULL
 	printf("memmove---------------------------------------\n");
-	char str5_1[] = "a\0kiyama";
-	memmove(str5_1 + 2, str5_1, 3);
+	char s5_1[] = "a\0kiyama";
+	memmove(s5_1 + 2, s5_1, 3);
 	printf("memmove:");
-	put_honest(str5_1, 7);
-	printf("memmove:%s:%s\n", memmove("akiyama", "akiyama", 3), memmove("akiyama", "akiyama", 0));
+	put_honest(s5_1, 7);
+	printf("memmove:%s:%s:%s\n", memmove("akiyama", "akiyama", 3), memmove("akiyama", "akiyama", 0), memmove(0, 0, 3));
+	char str5[] = "akiyama";
+	printf("memmove:%s\n", memmove(str5, "ryojiro", 3));
 
-	char str5_2[] = "a\0kiyama";
-	ft_memmove(str5_2 + 2, str5_2, 3);
+	char s5_2[] = "a\0kiyama";
+	ft_memmove(s5_2 + 2, s5_2, 3);
 	printf("ft_memmove:");
-	put_honest(str5_2, 7);
-//	printf("ft_memmove:%s\n", ft_memmove("akiyama", "akiyama", 0));
-	printf("ft_memmove:%s:%s\n", ft_memmove("akiyama", "akiyama", 3), ft_memmove("akiyama", "akiyama", 0));
+	put_honest(s5_2, 7);
+	printf("ft_memmove:%s:%s:%s\n", ft_memmove("akiyama", "akiyama", 3), ft_memmove("akiyama", "akiyama", 0), ft_memmove(0, 0, 3));
+	char str6[] = "akiyama";
+	printf("ft_memmove:%s\n", memmove(str6, "ryojiro", 3));
 
-	//memchr/not consider about oversize n
+	//memchr
+	//dst == NULL || src == NULL -> segf
 	printf("memchr---------------------------------------\n");
 	printf("memchr:%s:%s\n", memchr("akiyama", 'i', 4), memchr("akiyama", 'x', 4));
 	
 	printf("ft_memchr:%s:%s\n", ft_memchr("akiyama", 'i', 4), ft_memchr("akiyama", 'x', 4));
 	
-	//memcmp/not consider about oversize n
+	//memcmp
+	//dst == NULL || src == NULL -> segf
 	printf("memcmp----------------------------------------\n");
-	printf("memcmp:%d:%d\n", memcmp("akiyama", "akiYama", 6), memcmp("akiyama", "akiyama", 6));
+	printf("memcmp:%d:%d:%d\n", memcmp("akiyama", "akiYama", 6), memcmp("akiyama", "akiyama", 6), memcmp("#fjsdk", "~", 4));
+	printf("memcmp:%d:%d\n", memcmp("akiyama", "akiyama", 20), memcmp("akiyama", "ryojiro", 0));
 //	printf("memcmp:%d\n", memcmp("\200", "\0", 1));
 //	printf("%d\n", '\2');
 //	printf("%d\n", '\20');
 //	printf("%d\n", '\200');
 //	printf("\200\n");
-	printf("ft_memcmp:%d:%d\n", ft_memcmp("akiyama", "akiYama", 6), ft_memcmp("akiyama", "akiyama", 6));
+	printf("ft_memcmp:%d:%d:%d\n", ft_memcmp("akiyama", "akiYama", 6), ft_memcmp("akiyama", "akiyama", 6), ft_memcmp("#fjsdk", "~", 4));
+	printf("ft_memcmp:%d:%d\n", ft_memcmp("akiyama", "akiyama", 20), ft_memcmp("akiyama", "ryojiro", 0));
 //	printf("ft_memcmp:%d\n", ft_memcmp("\200", "\0", 1));
 	
 	//strlen
+	//s == NULL -> segf
 	printf("strlen----------------------------------------\n");
 	printf("strlen:%lu\n", strlen("akiyama"));
 	printf("ft_strlen:%lu\n", ft_strlen("akiyama"));
 	
-	//strlcpy/not consider about destsize over dstlen
+	//strlcpy
+	//destsize over dstlen -> compile error
+	//dst == NULL || src == NULL -> segf
+	//consider about src == NULL because unit-test
 	printf("strlcpy---------------------------------------\n");
 	char s8_1[] = "akiyama";
 //	char s8_2[] = "akiyama";
@@ -108,6 +144,7 @@ int main(void)
 //	printf("strlcpy:%lu:%s\n", strlcpy(s8_5, "123456789", 8), s8_5);
 //	printf("strlcpy:%lu\n", strlcpy(0, "123", 5));
 //	printf("strlcpy:%lu:%s\n", strlcpy(s8_11, 0, 5), s8_11);
+//	printf("strlcpy:%lu\n", strlcpy(0, 0, 5));
 
 	char s8_6[] = "akiyama";
 //	char s8_7[] = "akiyama";
@@ -158,13 +195,15 @@ int main(void)
 	printf("atoi----------------------------------------------\n");
 	printf("atoi:%d:%d:%d\n", atoi("+004324"), atoi("-43"), atoi("6543.vkd"));
 	printf("atoi:%d:%d:%d\n", atoi("+-4324"), atoi(" \n 43"), atoi("v54kd"));
-	printf("atoi:(x<llong)%d:(llong<x)%d:(abc)%d\n", atoi("-9223372036854775808"), atoi("9223372036854775808"), atoi("abc"));
-	printf("atoi:(long<x<int)%d:(int<x<long)%d:\n", atoi("-9223372036854775800"), atoi("9223372036854775800"));
+	printf("atoi:(x<llong)%d:(llong<x)%d:(abc)%d\n", atoi("-9223372036854775809"), atoi("9223372036854775808"), atoi("abc"));
+	printf("atoi:(long<x<int)%d:(int<x<long)%d\n", atoi("-9223372036854775800"), atoi("9223372036854775800"));
+	printf("atoi:(x==longmin)%d:(x==longmax)%d\n", atoi("-9223372036854775808"), atoi("9223372036854775807"));
 
 	printf("ft_atoi:%d:%d:%d\n", ft_atoi("+004324"), ft_atoi("-43"), ft_atoi("6543.vkd"));
 	printf("ft_atoi:%d:%d:%d\n", ft_atoi("+-4324"), ft_atoi(" \n 43"), ft_atoi("v54kd"));
-	printf("ft_atoi:(x<llong)%d:(llong<x)%d:(abc)%d\n", ft_atoi("-9223372036854775808"), ft_atoi("9223372036854775808"), ft_atoi("abc"));
-	printf("ft_atoi:(long<x<int)%d:(int<x<long)%d:\n", ft_atoi("-9223372036854775800"), ft_atoi("9223372036854775800"));
+	printf("ft_atoi:(x<llong)%d:(llong<x)%d:(abc)%d\n", ft_atoi("-9223372036854775809"), ft_atoi("9223372036854775808"), ft_atoi("abc"));
+	printf("ft_atoi:(long<x<int)%d:(int<x<long)%d\n", ft_atoi("-9223372036854775800"), ft_atoi("9223372036854775800"));
+	printf("ft_atoi:(x==longmin)%d:(x==longmax)%d\n", ft_atoi("-9223372036854775808"), ft_atoi("9223372036854775807"));
 
 	//isalpha
 	printf("isalpha----------------------------------------\n");
@@ -203,7 +242,8 @@ int main(void)
 	printf("tolower:%c:%c:%c:%c\n", tolower('~'), tolower('A'), tolower('h'), tolower('Z'));
 	printf("ft_tolower:%c:%c:%c:%c\n", ft_tolower('~'), ft_tolower('A'), ft_tolower('h'), ft_tolower('Z'));
 
-	//calloc/not consider about 0 argument/->NULL or 1/ 0 argument -> 1
+	//calloc
+	//can't think of a way to verify if calloc allocate the size or not
 	printf("calloc----------------------------------------\n");
 	int *ans1;
 	int i = -1;
@@ -213,15 +253,18 @@ int main(void)
 		printf(":%d", ans1[i]);
 	printf("\n");
 	free(ans1);
-
-	int *ans1_1;
-	i = -1;
-	ans1_1 = (int *)calloc(0, 0);
-	printf("calloc(0)");
-	printf(":%p", ans1_1);
-	printf("\n");
-	free(ans1_1);
 /*
+	char *ans1_1;
+	i = -1;
+	ans1_1 = (char *)calloc(0, 0);
+	printf("calloc(0)\n");
+	while (ans1_1[++i] == '\0')
+	{
+		printf("%d:%c\n", i, ans1_1[i]);
+		printf("\n");
+	}
+	free(ans1_1);
+
 	int *ans1_2;
 	i = -1;
 	ans1_2 = (int *)calloc(1, sizeof(int));
@@ -237,13 +280,19 @@ int main(void)
 	printf("\n");
 	free(ans2);
 
-	//strdup/errono?
+	//strdup
+	//s == NULL -> segf
 	printf("strdup----------------------------------------\n");
 	char *ans3;
 	ans3 = strdup("akiyama");
 	printf("strdup:%s\n", ans3);
 	free(ans3);
-
+/*	
+	char *ans3_1;
+	ans3_1 = strdup(0);
+	printf("strdup:%s\n", ans3_1);
+	free(ans3_1);
+*/
 	char *ans4;
 	ans4 = ft_strdup("akiyama");
 	printf("ft_strdup:%s\n", ans4);
