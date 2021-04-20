@@ -49,7 +49,7 @@ int	main(void)
 	t3.next = &t4;
 	t4.content = "fourth";
 	t4.next = &t5;
-	t5.content = "fifth";
+	t5.content = "last";
 	t5.next = NULL;
 
 	t_list	*op;
@@ -74,13 +74,13 @@ int	main(void)
 	//lstnew
 	printf("lstnew---------------------------------------------------------\n");
 	ans = ft_lstnew("lstnew");
-	printf("-ft_lstnew(\"lstnew\")-\n");
+	printf("==>ans = ft_lstnew(\"lstnew\")<==\n");
 	printf("ans->content:%s\n", (char *)ans->content);
 	printf("ans->next:%s\n", (char *)ans->next);
 	free(ans);
 
 	ans = ft_lstnew(NULL);
-	printf("-ft_lstnew(NULL)-\n");
+	printf("==>ans = ft_lstnew(NULL)<==\n");
 	printf("ans->content:%s\n", (char *)ans->content);
 	printf("ans->next:%s\n", (char *)ans->next);
 	free(ans);
@@ -88,73 +88,91 @@ int	main(void)
 	//lstadd_front
 	printf("lstadd_front---------------------------------------------------------\n");
 	op = &t1;
+	tmp = op;
+	i = 1;
+	while (tmp)
+	{
+		printf("t%d:%s\n", i, tmp->content);
+		i++;
+		tmp = tmp->next;
+	}
+	printf("op = &t1\n");
 	ft_lstadd_front(&op, &tf);
-	printf("-ft_lstadd_front(&op, &tf)-\n");
+	printf("==>ft_lstadd_front(&op, &tf)<==\n");
 	printf("op->content:%s\n", op->content);
 	printf("op->next->content:%s\n", op->next->content);
 	tf.next = NULL;
 
 	op = &t1;
 	ft_lstadd_front(NULL, &tf);
-	printf("-ft_lstadd_front(NULL, &tf)-\n");
+	printf("==>ft_lstadd_front(NULL, &tf)<==\n");
 	printf("op->content:%s\n", op->content);
 	printf("op->next->content:%s\n", op->next->content);
 	tf.next = NULL;
 
 	op = NULL;
 	ft_lstadd_front(&op, &tf);
-	printf("-ft_lstadd_front(&op(op==NULL), &tf)-\n");
+	printf("==>ft_lstadd_front(&op(op==NULL), &tf)<==\n");
 	printf("op->content:%s\n", op->content);
 	tf.next = NULL;
 
 	op = &t1;
 	ft_lstadd_front(&op, NULL);
-	printf("-ft_lstadd_front(&op, NULL)-\n");
+	printf("==>ft_lstadd_front(&op, NULL)<==\n");
 	printf("op->content:%s\n", op->content);
 	printf("op->next->content:%s\n", op->next->content);
 	tf.next = NULL;
 
 	//lstsize
 	printf("lstsize---------------------------------------------------------\n");
-	printf("-ft_lstsize(&t1)-\n");
+	printf("==>ft_lstsize(&t1)<==\n");
 	printf("size(5):%d\n", ft_lstsize(&t1));
 
-	printf("-ft_lstsize(NULL)-\n");
+	printf("==>ft_lstsize(NULL)<==\n");
 	printf("size(0):%d\n", ft_lstsize(NULL));
 
 	//lstlast
 	printf("lstlast---------------------------------------------------------\n");
 	ans = ft_lstlast(&t1);
-	printf("-ft_lstlast(&t1)-\n");
+	printf("==>ft_lstlast(&t1)<==\n");
 	printf("ans->content:%s\n", ans->content);
 
 	ans = ft_lstlast(NULL);
-	printf("-ft_lstlast(NULL)-\n");
+	printf("==>ft_lstlast(NULL)<==\n");
 	printf("ans:%p\n", ans);
 
 	//lstadd_back
 	printf("lstadd_back---------------------------------------------------------\n");
 	op = &t1;
+	tmp = op;
+	i = 1;
+	while (tmp)
+	{
+		printf("t%d:%s\n", i, tmp->content);
+		i++;
+		tmp = tmp->next;
+	}
+	printf("op = &t1\n");
 	ft_lstadd_back(&op, &tb);
-	printf("-ft_lstadd_back(&op, &tb)-\n");
+	printf("==>ft_lstadd_back(&op, &tb)<==\n");
 	printf("(t5.next)->content:%s\n", (t5.next)->content);
 	t5.next = NULL;
 
 	op = &t1;
 	ft_lstadd_back(NULL, &tb);
-	printf("-ft_lstadd_back(NULL, &tb)-\n");
+	printf("==>ft_lstadd_back(NULL, &tb)<==\n");
 	printf("t5.next:%p\n", t5.next);
 	t5.next = NULL;
 
 	op = NULL;
 	ft_lstadd_back(&op, &tb);
-	printf("-ft_lstadd_back(&op(op==NULL), &tb)-\n");
+	printf("==>ft_lstadd_back(&op(op==NULL), &tb)<==\n");
 	printf("op->content:%s\n", op->content);
 	t5.next = NULL;
 
 	op = &t1;
 	ft_lstadd_back(&op, NULL);
-	printf("-ft_lstadd_back(&op, NULL)-\n");
+	printf("==>ft_lstadd_back(&op, NULL)<==\n");
 	printf("t5.next:%p\n", t5.next);
 	t5.next = NULL;
 
