@@ -264,10 +264,7 @@ int main(void)
 
 	//putendl_fd
 	printf("putendl_fd----------------------------------\n");
-	write(fd, "akiyama", ft_strlen("akiyama"));
-	write(fd, "\nryojiro:\n", ft_strlen("\nryojiro:\n"));
 	ft_putendl_fd("akiyama", fd);
-	write(fd, "ryojiro", ft_strlen("ryojiro"));
 	write(fd, "\n", 1);
 	
 	write(fd, "str == NULL:", ft_strlen("str == NULL:"));
