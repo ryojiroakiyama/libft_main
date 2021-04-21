@@ -215,6 +215,7 @@ int	main(void)
 	ft_lstclear(&op, del);
 
 	//lstmap
+	//don't act against NULL(del) because of unit-test and unnecessary because of lstclear the func
 	op = &t1;
 	printf("lstmap-------------------------------------\n");
 	op = NULL;
