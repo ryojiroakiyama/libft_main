@@ -244,7 +244,12 @@ int main(void)
 	str2_1 = ft_strmapi(0, f);
 	printf("ft_strmapi(0, f):%s\n", str2_1);
 	free(str2_1);
-
+/*
+	char *str2_2;
+	str2_2 = ft_strmapi("akiyama", 0);
+	printf("ft_strmapi(0, f):%s\n", str2_2);
+	free(str2_2);
+*/
 	//putchar_fd
 	printf("putchar_fd----------------------------------\n");
 	int fd = 1;
