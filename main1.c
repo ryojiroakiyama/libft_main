@@ -87,7 +87,7 @@ int main(void)
 	memmove(s5_1 + 2, s5_1, 3);
 	printf("memmove:");
 	put_honest(s5_1, 7);
-	printf("memmove:%s:%s:%s\n", memmove("akiyama", "akiyama", 3), memmove("akiyama", "akiyama", 0), memmove(0, 0, 3));
+//	printf("memmove:%s:%s:%s\n", memmove("akiyama", "akiyama", 3), memmove("akiyama", "akiyama", 0), memmove(0, 0, 3));
 	char str5[] = "akiyama";
 	char str5_1[] = "akiyama";
 	printf("memmove:%s:%s\n", memmove(str5, "ryojiro", 3), memmove(str5_1, str5_1 + 2, 3));
@@ -96,7 +96,7 @@ int main(void)
 	ft_memmove(s5_2 + 2, s5_2, 3);
 	printf("ft_memmove:");
 	put_honest(s5_2, 7);
-	printf("ft_memmove:%s:%s:%s\n", ft_memmove("akiyama", "akiyama", 3), ft_memmove("akiyama", "akiyama", 0), ft_memmove(0, 0, 3));
+//	printf("ft_memmove:%s:%s:%s\n", ft_memmove("akiyama", "akiyama", 3), ft_memmove("akiyama", "akiyama", 0), ft_memmove(0, 0, 3));
 	char str6[] = "akiyama";
 	char str6_1[] = "akiyama";
 	printf("ft_memmove:%s:%s\n", ft_memmove(str6, "ryojiro", 3), ft_memmove(str6_1, str6_1 + 2, 3));
