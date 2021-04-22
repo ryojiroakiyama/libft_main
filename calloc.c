@@ -2,14 +2,16 @@
 
 int main(void)
 {
+	int cnt;
 	//calloc
 	//can't think of a way to verify if calloc allocate the size or not
 	printf("calloc----------------------------------------\n");
 	int *ans1;
 	int i = -1;
-	ans1 = (int *)calloc(10, sizeof(int));
+	cnt = 10;
+	ans1 = (int *)calloc(cnt, sizeof(int));
 	printf("calloc");
-	while (++i < 10)
+	while (++i < cnt)
 		printf(":%d", ans1[i]);
 	printf("\n");
 	free(ans1);
@@ -32,10 +34,10 @@ int main(void)
 	free(ans1_2);
 */
 	int	*ans2;
-	ans2 = (int *)ft_calloc(10, sizeof(int));
+	ans2 = (int *)ft_calloc(cnt, sizeof(int));
 	i = -1;
 	printf("ft_calloc");
-	while (++i < 10)
+	while (++i < cnt)
 		printf(":%d", ans2[i]);
 	printf("\n");
 	free(ans2);
