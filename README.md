@@ -8,4 +8,8 @@ main function for libft
 |-libft_main
 ```
 # test example in libft_main
+```
+cd libft_main
 gcc atoi.c ../libft/libft.a
+./a.out
+```
