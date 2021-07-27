@@ -2,7 +2,8 @@
 main function for libft
 
 # Placing the directory
-```.
+```
+.
 |-libft
 |-libft_main
 ```
