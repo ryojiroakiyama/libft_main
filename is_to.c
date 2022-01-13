@@ -1,4 +1,17 @@
-#include "main.h"
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+#include "libft.h"
+
+char	toupper_odd(unsigned int n, char c)
+{
+	if (n % 2)
+	{
+		if (97 <= c && c <= 122)
+			return (c - 32);
+	}
+	return (c);
+}
 
 int main(void)
 {
@@ -32,7 +45,7 @@ int main(void)
 	//toupper
 	printf("toupper----------------------------------------\n");
 	printf("toupper:%c:%c:%c:%c\n", toupper('~'), toupper('a'), toupper('H'), toupper('z'));
-	printf("ft_toupper:%c:%c:%c:%c\n", ft_toupper('~'), ft_toupper('a'), ft_toupper('H'), ft_toupper('z'));
+	printf("toupper_oddper:%c:%c:%c:%c\n", toupper_oddper('~'), toupper_oddper('a'), toupper_oddper('H'), toupper_oddper('z'));
 	
 	//tolower
 	printf("tolower----------------------------------------\n");

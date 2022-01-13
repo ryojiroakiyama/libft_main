@@ -1,4 +1,15 @@
-#include "main.h"
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+#include "libft.h"
+
+void put_all_tolen(char *str, int len)
+{
+	int i = -1;
+	while (++i < len)
+		printf("%c", str[i]);
+	printf("\n");
+}
 
 int	main(void)
 {
@@ -11,12 +22,12 @@ int	main(void)
 	char s1[] = "a\0kiyama";
 	memmove(s1 + 2, s1, 3);
 	printf("memmove:");
-	put_honest(s1, 7);
+	put_all_tolen(s1, 7);
 	
 	char s2[] = "a\0kiyama";
 	ft_memmove(s2 + 2, s2, 3);
 	printf("ft_memmove:");
-	put_honest(s2, 7);
+	put_all_tolen(s2, 7);
 
 	//normal
 	char s4[] = "akiyama";

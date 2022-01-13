@@ -1,14 +1,14 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
-#include "../libft/libft.h"
+#include "libft.h"
 
 void	ft_del(void	*content)
 {
 	free(content);
 }
 
-void	ft_toup(void *content)
+void	toupper_odd(void *content)
 {
 	unsigned char *s;
 	s = (unsigned char *)content;
@@ -59,7 +59,7 @@ int	main(void)
 	void	(*del)(void	*);
 	del = ft_del;
 	void	(*f)(void *);
-	f = ft_toup;
+	f = toupper_odd;
 	void	*(*ff)(void *);
 	ff = ft_retoup;
 

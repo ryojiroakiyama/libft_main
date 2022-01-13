@@ -1,4 +1,15 @@
-#include "main.h"
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+#include "libft.h"
+
+void put_all_tolen(char *str, int len)
+{
+	int i = -1;
+	while (++i < len)
+		printf("%c", str[i]);
+	printf("\n");
+}
 
 int	main(void)
 {
@@ -13,12 +24,12 @@ int	main(void)
 	char str1[] = "akiyama";
 	printf("memcpy:%s:%s:%s:", memcpy(s3_1, "12345", 4), memcpy(0, 0, 4), memcpy(str1, "12345", 0));
 	memcpy(s3_2, "ab\0de", 4);
-	put_honest(s3_2, 7);
+	put_all_tolen(s3_2, 7);
 	
 	char s3_3[] = "akiyama";
 	char s3_4[] = "akiyama";
 	char str2[] = "akiyama";
 	printf("ft_memcpy:%s:%s:%s:", ft_memcpy(s3_3, "12345", 4), ft_memcpy(0, 0, 4), ft_memcpy(str2, "12345", 0));
 	ft_memcpy(s3_4, "ab\0de", 4);
-	put_honest(s3_4, 7);
+	put_all_tolen(s3_4, 7);
 }
