@@ -85,6 +85,7 @@ int	main(void)
 	printf("ans->next:%s\n", (char *)ans->next);
 	free(ans);
 
+/*
 	//lstadd_front
 	printf("lstadd_front---------------------------------------------------------\n");
 	op = &t1;
@@ -257,6 +258,6 @@ int	main(void)
 		op2 = tmp;
 	}
 
-	system("leaks a.out");
+	system("leaks a.out");*/
 	return (0);
 }
